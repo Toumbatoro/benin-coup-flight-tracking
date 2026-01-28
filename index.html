@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Flight Tracking Data Reveals About Foreign Intervention in Benin's Failed Coup</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
+      background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+      color: #e2e8f0;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .report-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    /* Typography */
+    h1.main-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      letter-spacing: -0.5px;
+      line-height: 1.3;
+    }
+
+    h2.section-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 48px 0 24px 0;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #334155;
+      letter-spacing: -0.3px;
+    }
+
+    p {
+      margin-bottom: 16px;
+      font-size: 15px;
+      color: #cbd5e1;
+      line-height: 1.8;
+    }
+
+    /* Header Image */
+    .header-image {
+      width: 100%;
+      margin: 24px 0;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .header-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .image-caption {
+      font-size: 12px;
+      color: #94a3b8;
+      font-style: italic;
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    /* ===== TAKEAWAYS GRID ===== */
+    .takeaways-grid {
+      margin: 24px 0;
+    }
+
+    .takeaway-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .takeaway-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .takeaway-row.three-col .takeaway-card {
+      flex: 1;
+    }
+
+    .takeaway-row.two-col {
+      justify-content: center;
+    }
+
+    .takeaway-row.two-col .takeaway-card {
+      flex: 0 1 calc(50% - 8px);
+    }
+
+    .takeaway-card {
+      background: #1e293b;
+      border-radius: 8px;
+      padding: 16px 20px;
+      border: 1px solid #334155;
+      border-left: 3px solid #f5c518;
+    }
+
+    .takeaway-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #f5c518;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .takeaway-text {
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    /* Visualization Containers */
+    .visualization-container {
+      background: #1e293b;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      margin: 24px 0;
+      overflow: hidden;
+    }
+
+    /* ===== TIMELINE VISUALIZATION ===== */
+    .timeline-vis {
+      padding: 24px;
+    }
+
+    .timeline-vis h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .timeline-vis .subtitle {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-bottom: 24px;
+    }
+
+    .timeline-container {
+      display: flex;
+      gap: 0;
+      max-width: 700px;
+    }
+
+    .timeline-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 40px;
+      flex-shrink: 0;
+    }
+
+    .timeline-line {
+      width: 3px;
+      flex-grow: 1;
+      background: linear-gradient(180deg, #475569 0%, #334155 100%);
+      border-radius: 2px;
+    }
+
+    .timeline-arrowhead {
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 12px solid #334155;
+      margin-top: -1px;
+    }
+
+    .timeline-events {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      flex-grow: 1;
+    }
+
+    .timeline-event {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding-bottom: 28px;
+      position: relative;
+    }
+
+    .timeline-event:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -29px;
+      top: 4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #f5c518;
+      border: 3px solid #0f172a;
+      box-shadow: 0 0 8px rgba(245, 197, 24, 0.4);
+    }
+
+    .timeline-dot.major {
+      left: -33px;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      border: 4px solid #0f172a;
+      box-shadow: 0 0 16px rgba(245, 197, 24, 0.5), 0 0 32px rgba(245, 197, 24, 0.25);
+    }
+
+    .timeline-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      color: #f5c518;
+      min-width: 60px;
+      flex-shrink: 0;
+    }
+
+    .timeline-content h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #f1f5f9;
+      margin-bottom: 4px;
+    }
+
+    .timeline-content.major h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .timeline-content p {
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    /* ===== AIRCRAFT CARDS VISUALIZATION ===== */
+    .aircraft-vis {
+      padding: 24px;
+    }
+
+    .aircraft-vis h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .aircraft-columns {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .aircraft-column {
+      flex: 1 1 0;
+      min-width: 170px;
+      max-width: 200px;
+    }
+
+    .column-header {
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #f1f5f9;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .column-header.benin { border-bottom: 3px solid #dc2626; }
+    .column-header.france { border-bottom: 3px solid #3b82f6; }
+    .column-header.nigeria { border-bottom: 3px solid #166534; }
+    .column-header.ivorycoast { border-bottom: 3px solid #f97316; }
+    .column-header.unknown { border-bottom: 3px solid #6b7280; }
+
+    .aircraft-card {
+      background: #1e293b;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      overflow: hidden;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+
+    .aircraft-card.benin { border-left: 3px solid #dc2626; }
+    .aircraft-card.france { border-left: 3px solid #3b82f6; }
+    .aircraft-card.nigeria { border-left: 3px solid #166534; }
+    .aircraft-card.ivorycoast { border-left: 3px solid #f97316; }
+    .aircraft-card.unknown { border-left: 3px solid #6b7280; }
+
+    .card-image {
+      width: 100%;
+      height: 70px;
+      background: linear-gradient(145deg, rgba(220,38,38,0.1) 0%, #0f172a 70%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid #334155;
+      font-size: 9px;
+      color: #475569;
+      font-family: 'JetBrains Mono', monospace;
+      overflow: hidden;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-image.no-image {
+      background: linear-gradient(145deg, #1e293b 0%, #0f172a 70%);
+      color: #475569;
+    }
+
+    .card-body {
+      padding: 10px;
+    }
+
+    .card-type {
+      display: inline-block;
+      font-size: 8px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+
+    .card-type.benin { background: #dc2626; }
+    .card-type.france { background: #3b82f6; }
+    .card-type.nigeria { background: #166534; }
+    .card-type.ivorycoast { background: #f97316; }
+    .card-type.unknown { background: #6b7280; }
+
+    .card-model {
+      font-size: 11px;
+      font-weight: 600;
+      color: #f1f5f9;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .card-reg {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: #94a3b8;
+      background: #0f172a;
+      padding: 2px 6px;
+      border-radius: 3px;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    .card-notes {
+      font-size: 9px;
+      color: #94a3b8;
+      line-height: 1.4;
+      border-top: 1px solid #334155;
+      padding-top: 6px;
+      margin-top: 4px;
+    }
+
+    /* ===== COMBINED TIMELINE VISUALIZATION ===== */
+    .combined-vis {
+      padding: 24px;
+    }
+
+    .combined-vis h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .vis-hint {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 16px;
+    }
+
+    .legend {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .legend-label {
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-color {
+      width: 14px;
+      height: 6px;
+      border-radius: 2px;
+    }
+
+    .legend-color.benin { background: #dc2626; }
+    .legend-color.france { background: #3b82f6; }
+    .legend-color.nigeria { background: #166534; }
+    .legend-color.ivorycoast { background: #f97316; }
+    .legend-color.unknown { background: #6b7280; }
+
+    .legend-text {
+      font-size: 11px;
+      color: #94a3b8;
+    }
+
+    .gantt-container {
+      background: #1e293b;
+      border-radius: 8px;
+      padding: 16px;
+      border: 1px solid #334155;
+      position: relative;
+      overflow-x: auto;
+    }
+
+    .gantt-header {
+      display: flex;
+      margin-left: 160px;
+      margin-bottom: 6px;
+      position: relative;
+    }
+
+    .gantt-hour {
+      flex: 1;
+      font-size: 10px;
+      color: #94a3b8;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      min-width: 50px;
+    }
+
+    .gantt-section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: #64748b;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .gantt-row {
+      display: flex;
+      align-items: center;
+      height: 22px;
+      margin-bottom: 1px;
+    }
+
+    .gantt-label {
+      width: 160px;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-family: 'JetBrains Mono', monospace;
+      padding-right: 10px;
+      flex-shrink: 0;
+    }
+
+    .gantt-label span {
+      color: #64748b;
+      margin-left: 4px;
+    }
+
+    .gantt-track {
+      flex: 1;
+      position: relative;
+      height: 100%;
+      min-width: 650px;
+      background-image: repeating-linear-gradient(
+        to right,
+        rgba(71, 85, 105, 0.3) 0px,
+        rgba(71, 85, 105, 0.3) 1px,
+        transparent 1px,
+        transparent 50px
+      );
+      background-size: 50px 100%;
+    }
+
+    .gantt-bar {
+      position: absolute;
+      height: 14px;
+      top: 4px;
+      border-radius: 3px;
+      opacity: 0.85;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    .gantt-bar:hover {
+      opacity: 1;
+    }
+
+    .gantt-bar .tooltip {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0f172a;
+      border: 1px solid #475569;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      color: #e2e8f0;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+      pointer-events: none;
+      margin-bottom: 4px;
+      z-index: 10;
+    }
+
+    .gantt-bar:hover .tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .gantt-bar.benin { background: #dc2626; }
+    .gantt-bar.france { background: #3b82f6; }
+    .gantt-bar.nigeria { background: #166534; }
+    .gantt-bar.ivorycoast { background: #f97316; }
+    .gantt-bar.unknown { background: #6b7280; }
+
+    .gantt-divider {
+      border-top: 3px solid #475569;
+      margin: 12px 0;
+      width: 100%;
+      min-width: calc(160px + 650px);
+    }
+
+    .events-row-container {
+      height: 90px;
+      align-items: flex-start;
+    }
+
+    .events-track {
+      height: 90px;
+    }
+
+    .event-marker {
+      position: absolute;
+      text-align: center;
+      transform: translateX(-50%);
+    }
+
+    .event-marker.top {
+      top: 0;
+    }
+
+    .event-marker.bottom {
+      top: 45px;
+    }
+
+    .event-tick {
+      width: 2px;
+      height: 10px;
+      background: #94a3b8;
+      margin: 0 auto 3px;
+    }
+
+    .event-time {
+      font-size: 9px;
+      font-family: 'JetBrains Mono', monospace;
+      color: #94a3b8;
+      margin-bottom: 1px;
+    }
+
+    .event-text {
+      font-size: 10px;
+      color: #e2e8f0;
+      white-space: nowrap;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    .gantt-footer {
+      margin-top: 12px;
+      font-size: 10px;
+      color: #64748b;
+    }
+
+    /* ===== COLLAPSIBLE BLOCKS ===== */
+    .analysis-section {
+      margin-top: 48px;
+    }
+
+    .analysis-section h2 {
+      margin-bottom: 16px;
+    }
+
+    .analysis-intro {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 24px;
+    }
+
+    .analysis-block {
+      margin-bottom: 16px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid rgba(148, 163, 184, 0.1);
+    }
+
+    .block-header {
+      background: #dc2626;
+      padding: 14px 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+      transition: background 0.2s ease;
+    }
+
+    .block-header:hover { background: #ef4444; }
+    .block-header.france { background: #3b82f6; }
+    .block-header.france:hover { background: #60a5fa; }
+    .block-header.nigeria { background: #166534; }
+    .block-header.nigeria:hover { background: #22863a; }
+    .block-header.ivorycoast { background: #f97316; }
+    .block-header.ivorycoast:hover { background: #fb923c; }
+    .block-header.unknown { background: #6b7280; }
+    .block-header.unknown:hover { background: #9ca3af; }
+
+    .block-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .block-chevron {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .block-header.expanded .block-chevron {
+      transform: rotate(180deg);
+    }
+
+    .block-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .block-content.expanded {
+      max-height: 3000px;
+    }
+
+    .block-inner {
+      padding: 20px;
+    }
+
+    .image-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .image-row.single {
+      justify-content: center;
+    }
+
+    .image-container {
+      flex: 1;
+      max-width: 100%;
+      cursor: pointer;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .image-row.single .image-container {
+      flex: none;
+      width: 70%;
+    }
+
+    .image-container:hover {
+      transform: scale(1.02);
+      border-color: rgba(148, 163, 184, 0.4);
+    }
+
+    .image-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .block-image-caption {
+      font-size: 11px;
+      color: #94a3b8;
+      font-style: italic;
+      margin-top: 8px;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .ref-link {
+      color: #f5c518;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 2px;
+    }
+
+    .ref-link:hover {
+      text-decoration: underline;
+    }
+
+    .text-block {
+      margin-bottom: 16px;
+      padding: 16px;
+      background: rgba(15, 23, 42, 0.5);
+      border-radius: 6px;
+      border-left: 3px solid #dc2626;
+    }
+
+    .text-block.france { border-left-color: #3b82f6; }
+    .text-block.nigeria { border-left-color: #166534; }
+    .text-block.ivorycoast { border-left-color: #f97316; }
+    .text-block.unknown { border-left-color: #6b7280; }
+
+    .text-block p {
+      font-size: 14px;
+      color: #cbd5e1;
+      line-height: 1.7;
+    }
+
+    .text-block:last-child,
+    .image-row:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ===== INSIGHTS SECTION ===== */
+    .insights-list {
+      margin: 24px 0;
+    }
+
+    .insight-item {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding: 16px;
+      background: rgba(30, 41, 59, 0.5);
+      border-radius: 6px;
+      border: 1px solid rgba(148, 163, 184, 0.1);
+    }
+
+    .insight-bullet {
+      width: 8px;
+      height: 8px;
+      background: #f5c518;
+      border-radius: 50%;
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .insight-text {
+      flex: 1;
+    }
+
+    .insight-text strong {
+      color: #f1f5f9;
+    }
+
+    /* ===== INLINE IMAGE ===== */
+    .inline-image {
+      margin: 24px 0;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .inline-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      cursor: pointer;
+    }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      max-width: 95%;
+      max-height: 95%;
+      position: relative;
+    }
+
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 8px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: none;
+      border: none;
+      color: #e2e8f0;
+      font-size: 32px;
+      cursor: pointer;
+      padding: 8px;
+      line-height: 1;
+    }
+
+    .lightbox-close:hover {
+      color: #fff;
+    }
+
+    /* ===== METHODOLOGY SECTION ===== */
+    .methodology-section {
+      background: #1e293b;
+      border-radius: 8px;
+      padding: 24px;
+      border: 1px solid #334155;
+      margin-top: 24px;
+    }
+
+    .methodology-intro {
+      font-size: 15px;
+      color: #e2e8f0;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #334155;
+    }
+
+    .methodology-block {
+      margin-bottom: 24px;
+    }
+
+    .methodology-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .methodology-heading {
+      font-size: 15px;
+      font-weight: 700;
+      color: #f5c518;
+      margin-bottom: 12px;
+    }
+
+    .methodology-block p {
+      font-size: 14px;
+      color: #cbd5e1;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .methodology-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .methodology-list {
+      margin: 12px 0;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .methodology-list li {
+      font-size: 14px;
+      color: #cbd5e1;
+      line-height: 1.7;
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .methodology-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 8px;
+      height: 8px;
+      background: #f5c518;
+      border-radius: 50%;
+    }
+
+    .methodology-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ===== FOOTER ===== */
+    .report-footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid #334155;
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    /* ===== BACK TO TOP BUTTON ===== */
+    .back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 40px;
+      height: 40px;
+      background: #334155;
+      border: 1px solid #475569;
+      border-radius: 8px;
+      color: #e2e8f0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease, background 0.2s ease;
+      z-index: 100;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background: #475569;
+    }
+
+    .back-to-top svg {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="report-container">
+
+    <!-- ==================== SECTION 1: INTRODUCTION ==================== -->
+    <h1 class="main-title">What Flight Tracking Data Reveals About Foreign Intervention in Benin's Failed Coup</h1>
+
+    <div class="header-image">
+      <img src="images/image-20.png" alt="Flight tracking over Cotonou on December 7, 2025" onclick="openLightbox(this.src)">
+    </div>
+    <p class="image-caption">Flight tracking over Cotonou on December 7, 2025, at 16:43 UTC showing five foreign military aircraft over Cotonou during the attempted coup (source: Flightradar24)</p>
+
+    <p>On 7 December 2025, a small group of mutinying soldiers identifying itself as the "Military Committee for Refoundation" attempted an ultimately unsuccessful coup in Benin's capital, Cotonou. The attempt occurred against the backdrop of a series of recent military takeovers in West Africa, which saw regime changes in Mali, Guinea, Burkina Faso, and Niger.</p>
+
+    <p>Unlike those cases however, Benin's authorities benefited from rapid and decisive support from international and regional partners, including through bilateral agreements and under the framework of the Economic Community of West African States (ECOWAS) Standby Force (ESF). This support was clearly observable from the air, as multiple countries deployed aircraft providing transport, intelligence, surveillance and reconnaissance (ISR), and close air support.</p>
+
+    <p>Using open-source information and flight tracking data, this report reconstructs the aerial response to the coup attempt, examining the assets deployed and missions conducted by Benin and its partners.</p>
+
+    <p><strong>The report's main takeaways include:</strong></p>
+
+    <div class="takeaways-grid">
+      <div class="takeaway-row three-col">
+        <div class="takeaway-card">
+          <div class="takeaway-title">Beninese rapid response</div>
+          <div class="takeaway-text">Benin managed to mobilize surveillance aircraft in the first phase of the crisis, demonstrating an indigenous aerial response and surveillance capability.</div>
+        </div>
+        <div class="takeaway-card">
+          <div class="takeaway-title">French ISR and Coordination</div>
+          <div class="takeaway-text">French-linked ISR aircraft maintained sustained coverage over Cotonou throughout the coup attempt, likely providing the backbone of information sharing and support to ground and aerial operations.</div>
+        </div>
+        <div class="takeaway-card">
+          <div class="takeaway-title">Airspace deconfliction</div>
+          <div class="takeaway-text">Five aircraft from three countries operating over Cotonou at 17:30 WAT, coinciding with air-to-ground strikes in a limited area, demonstrates notable operational coordination capacity.</div>
+        </div>
+      </div>
+      <div class="takeaway-row two-col">
+        <div class="takeaway-card">
+          <div class="takeaway-title">Nigerian operational capacity</div>
+          <div class="takeaway-text">Nigeria executed a relatively complex operation, with assets scrambling from multiple bases to converge on target. The combination of two attack aircraft and one, unverified but likely, ISR platform suggests capacity for self-sustained operations, notable given limited preparation time, unfamiliar terrain, and a densely populated urban environment to conduct airstrikes.</div>
+        </div>
+        <div class="takeaway-card">
+          <div class="takeaway-title">Ivorian transport activity</div>
+          <div class="takeaway-text">Côte d'Ivoire deployed a transport aircraft whose flight pattern is consistent with troop movement, amid reports of French special forces deployed from Abidjan in support to Benin security forces.</div>
+        </div>
+      </div>
+    </div>
+
+    <p>The rapid deployment of aerial assets to support Benin's authorities, and the use of force against coup plotters, marks a significant shift from ECOWAS members and France. While the region's heavyweights were politically aligned in condemning unconstitutional regime changes and diplomatically active during past crises, the use of force and foreign military intervention never carried the same consensus.</p>
+
+    <p>Beyond the political dimension, the operation demonstrated actual capacity, something that remained a significant question mark following ECOWAS's threat of military action after the Niger coup, which ultimately exposed the limits of the bloc's rapid response capability.</p>
+
+    <p>Overall, this political shift and operational precedent signal not only a change in positioning, but the capacity to back that position with force; something that will likely factor into calculations among political and military elites across the region.</p>
+
+
+    <!-- ==================== SECTION 2: TIMELINE AND AERIAL PRESENCE ==================== -->
+    <h2 class="section-title">Timeline of events and aerial presence</h2>
+
+    <p>The main sequence of events from the attempted coup.</p>
+
+    <!-- VISUAL 1: Vertical Timeline -->
+    <div class="visualization-container timeline-vis">
+      <h3>Benin Coup Attempt – 7 December 2025</h3>
+      <p class="subtitle">Timeline of key events (WAT / UTC+1)</p>
+
+      <div class="timeline-container">
+        <div class="timeline-arrow">
+          <div class="timeline-line"></div>
+          <div class="timeline-arrowhead"></div>
+        </div>
+
+        <div class="timeline-events">
+          <div class="timeline-event">
+            <div class="timeline-dot major"></div>
+            <div class="timeline-time">02:00</div>
+            <div class="timeline-content major">
+              <h4>First Attacks on Military Leadership</h4>
+              <p>Mutinous soldiers from Camp Togbin launched coordinated attacks targeting senior officials. Generals Fructueux Issa (Army Chief of Staff) and Faïzou Gomina (Togbin base commander) captured. Bertin Bada (Director of Military Cabinet) escaped; his wife was killed.</p>
+            </div>
+          </div>
+
+          <div class="timeline-event">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">05:00</div>
+            <div class="timeline-content">
+              <h4>Presidential Palace Assault</h4>
+              <p>Insurgents attacked the Presidential Palace. The Republican Guard repelled the assault; President Talon was present with his family.</p>
+            </div>
+          </div>
+
+          <div class="timeline-event">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">~08:00</div>
+            <div class="timeline-content">
+              <h4>ORTB State Television Seized</h4>
+              <p>Lt. Col. Pascal Tigri and approximately eight soldiers seized ORTB, broadcasting a coup declaration under the Military Committee for Refoundation (CMR). Journalists held hostage.</p>
+            </div>
+          </div>
+
+          <div class="timeline-event">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">~10:00</div>
+            <div class="timeline-content">
+              <h4>TV Station Retaken</h4>
+              <p>Loyalist forces retook ORTB after approximately two hours. Rebels retreated to Camp Togbin with armored vehicles and weapons.</p>
+            </div>
+          </div>
+
+          <div class="timeline-event">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">11:09</div>
+            <div class="timeline-content">
+              <h4>Coup Declared "Foiled"</h4>
+              <p>Interior Minister Alassane Seidou declared the coup foiled. Loyalist forces surrounded Camp Togbin, sealing exit routes.</p>
+            </div>
+          </div>
+
+          <div class="timeline-event">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">~17:30</div>
+            <div class="timeline-content">
+              <h4>Nigerian Airstrikes</h4>
+              <p>Nigerian Air Force jets conducted targeted airstrikes on rebel positions at Camp Togbin.</p>
+            </div>
+          </div>
+
+          <div class="timeline-event">
+            <div class="timeline-dot major"></div>
+            <div class="timeline-time">19:37</div>
+            <div class="timeline-content major">
+              <h4>Talon Address & ECOWAS Deployment</h4>
+              <p>President Talon addressed the nation, confirming the situation was under control. ECOWAS announced troop deployment from Nigeria, Côte d'Ivoire, Sierra Leone, and Ghana. At least 14 arrested; Tigri remained fugitive.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p>Looking at the aircraft that operated over Cotonou (and excluding commercial airliner or jets just crossing through the airspace) 9 aircraft could be seen above Cotonou during 7 December 2025. Based on information available on flight tracking platform the aircraft belonged or were operated by Benin, France, Nigeria, Côte d'Ivoire (more information on attribution in the flight tracking information analysis section).</p>
+
+    <!-- VISUAL 2: Aircraft Cards -->
+    <div class="visualization-container aircraft-vis">
+      <h3>Aircraft Involved in Benin Coup Response – 7 December 2025</h3>
+
+      <div class="aircraft-columns">
+        <!-- Benin Column -->
+        <div class="aircraft-column">
+          <div class="column-header benin">Benin</div>
+          
+          <div class="aircraft-card benin">
+            <div class="card-image"><img src="images/image-22.png" alt="AutoGyro Calidus"></div>
+            <div class="card-body">
+              <span class="card-type benin">ISR</span>
+              <div class="card-model">AutoGyro Calidus Sentinel 916 iS</div>
+              <span class="card-reg">TY-64L & TY-50L</span>
+              <div class="card-notes">Reconnaissance gyrocopter</div>
+            </div>
+          </div>
+
+          <div class="aircraft-card benin">
+            <div class="card-image"><img src="images/image-23.png" alt="AS-350 Helicopter"></div>
+            <div class="card-body">
+              <span class="card-type benin">ISR / Transport</span>
+              <div class="card-model">AS-350 B3e Écureuil</div>
+              <span class="card-reg">TY-34H</span>
+              <div class="card-notes">Multirole helicopter – reconnaissance or transport</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- France Column -->
+        <div class="aircraft-column">
+          <div class="column-header france">France</div>
+          
+          <div class="aircraft-card france">
+            <div class="card-image"><img src="images/image-24.png" alt="Beech King Air 350"></div>
+            <div class="card-body">
+              <span class="card-type france">ISR</span>
+              <div class="card-model">Beech King Air 350</div>
+              <span class="card-reg">F-GYEE</span>
+              <div class="card-notes">CAE Aviation owned, leased for French military</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nigeria Column -->
+        <div class="aircraft-column">
+          <div class="column-header nigeria">Nigeria</div>
+          
+          <div class="aircraft-card nigeria">
+            <div class="card-image"><img src="images/image-25.png" alt="A-29B Super Tucano"></div>
+            <div class="card-body">
+              <span class="card-type nigeria">Ground Attack</span>
+              <div class="card-model">A-29B Super Tucano</div>
+              <span class="card-reg">Unknown (×2)</span>
+              <div class="card-notes">Close air support</div>
+            </div>
+          </div>
+
+          <div class="aircraft-card nigeria">
+            <div class="card-image no-image">[ No Image ]</div>
+            <div class="card-body">
+              <span class="card-type nigeria">Suspected ISR</span>
+              <div class="card-model">Unidentified Aircraft</div>
+              <span class="card-reg">Unknown</span>
+              <div class="card-notes">Flight pattern over Cotonou suggests ISR role</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Côte d'Ivoire Column -->
+        <div class="aircraft-column">
+          <div class="column-header ivorycoast">Côte d'Ivoire</div>
+          
+          <div class="aircraft-card ivorycoast">
+            <div class="card-image"><img src="images/image-26.png" alt="Casa CN-235-300M"></div>
+            <div class="card-body">
+              <span class="card-type ivorycoast">Tactical Transport</span>
+              <div class="card-model">Casa CN-235-300M</div>
+              <span class="card-reg">Unknown</span>
+              <div class="card-notes">Military transport</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unknown Column -->
+        <div class="aircraft-column">
+          <div class="column-header unknown">Unknown</div>
+          
+          <div class="aircraft-card unknown">
+            <div class="card-image"><img src="images/image-27.png" alt="Beech King Air 350"></div>
+            <div class="card-body">
+              <span class="card-type unknown">ISR</span>
+              <div class="card-model">Beech King Air 350</div>
+              <span class="card-reg">Unknown</span>
+              <div class="card-notes">Benin & France both operate similar aircraft</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gantt-footer">Sources: Flightradar24, AirNav RadarBox</div>
+    </div>
+
+    <p>These aircraft can be divided into categories based on mission and capabilities:</p>
+
+    <div class="insights-list">
+      <div class="insight-item">
+        <div class="insight-bullet"></div>
+        <div class="insight-text">
+          <p><strong>Intelligence, Surveillance, and Reconnaissance (ISR):</strong> Aircraft equipped with sensors to monitor, collect, and transmit information from a given area. The AutoGyro Calidus and AS350e helicopter can perform ISR missions, while the Beechcraft King Air 350 is a dedicated ISR platform offering more advanced and extensive capabilities.</p>
+        </div>
+      </div>
+      <div class="insight-item">
+        <div class="insight-bullet"></div>
+        <div class="insight-text">
+          <p><strong>Transport:</strong> Aircraft designed to move personnel or equipment. The AS350e helicopter can provide light transport, while the CN-235-300M is a dedicated transport aircraft enabling rapid deployment of troops or logistics.</p>
+        </div>
+      </div>
+      <div class="insight-item">
+        <div class="insight-bullet"></div>
+        <div class="insight-text">
+          <p><strong>Close Air Support (CAS):</strong> Aircraft designed to provide air-to-ground fire support during military operations. The Nigerian A-29B Super Tucano is armed with machine guns, rockets, and precision-guided munitions, enabling it to engage ground targets and respond quickly to tactical developments.</p>
+        </div>
+      </div>
+    </div>
+
+    <p>The timeline below shows all aircraft tracking data over Benin airspace, alongside a timeline of ground events.</p>
+
+    <p>The first aerial assets were deployed more than five hours after the start of the attempted coup. These aircraft were registered in Benin and included two gyrocopters and one helicopter, all capable of reconnaissance and surveillance missions.</p>
+
+    <p>Following this initial response, no other Benin-registered aircraft appeared on publicly available tracking platforms for the rest of the day. The afternoon saw a significant shift as military aircraft from France, Côte d'Ivoire, and Nigeria began operating in Benin's airspace, culminating in five aircraft simultaneously over the greater Cotonou area at 17:30 WAT.</p>
+
+    <!-- VISUAL 3: Combined Timeline (Gantt) -->
+    <div class="visualization-container combined-vis">
+      <h3>Aircraft Activity over Benin during Coup Attempt – 7 December 2025</h3>
+      <p class="vis-hint">Hover over flight bars to see exact times</p>
+
+      <div class="legend">
+        <span class="legend-label">Country:</span>
+        <div class="legend-item"><div class="legend-color benin"></div><span class="legend-text">Benin</span></div>
+        <div class="legend-item"><div class="legend-color france"></div><span class="legend-text">France</span></div>
+        <div class="legend-item"><div class="legend-color nigeria"></div><span class="legend-text">Nigeria</span></div>
+        <div class="legend-item"><div class="legend-color ivorycoast"></div><span class="legend-text">Côte d'Ivoire</span></div>
+        <div class="legend-item"><div class="legend-color unknown"></div><span class="legend-text">Undefined</span></div>
+      </div>
+
+      <div class="gantt-container">
+        <!-- Time axis -->
+        <div class="gantt-header">
+          <span class="gantt-hour">00:00</span>
+          <span class="gantt-hour">02:00</span>
+          <span class="gantt-hour">04:00</span>
+          <span class="gantt-hour">06:00</span>
+          <span class="gantt-hour">08:00</span>
+          <span class="gantt-hour">10:00</span>
+          <span class="gantt-hour">12:00</span>
+          <span class="gantt-hour">14:00</span>
+          <span class="gantt-hour">16:00</span>
+          <span class="gantt-hour">18:00</span>
+          <span class="gantt-hour">20:00</span>
+          <span class="gantt-hour">22:00</span>
+          <span class="gantt-hour">24:00</span>
+        </div>
+
+        <div class="gantt-section-label">Aircraft</div>
+
+        <!-- Aircraft rows -->
+        <div class="gantt-row">
+          <div class="gantt-label">Calidus <span>(TY-64L)</span></div>
+          <div class="gantt-track">
+            <div class="gantt-bar benin" style="left: 36.3%; width: 3.5%;"><span class="tooltip">08:43 – 09:33 WAT</span></div>
+          </div>
+        </div>
+
+        <div class="gantt-row">
+          <div class="gantt-label">Calidus <span>(TY-50L)</span></div>
+          <div class="gantt-track">
+            <div class="gantt-bar benin" style="left: 43.5%; width: 8.5%;"><span class="tooltip">10:27 – 12:31 WAT</span></div>
+          </div>
+        </div>
+
+        <div class="gantt-row">
+          <div class="gantt-label">AS-350 <span>(TY-37H)</span></div>
+          <div class="gantt-track">
+            <div class="gantt-bar benin" style="left: 50.5%; width: 3.3%;"><span class="tooltip">12:07 – 12:55 WAT</span></div>
+          </div>
+        </div>
+
+        <div class="gantt-row">
+          <div class="gantt-label">King Air 350 <span>(F-GYEE)</span></div>
+          <div class="gantt-track">
+            <div class="gantt-bar france" style="left: 60.3%; width: 22.1%;"><span class="tooltip">14:28 – 19:47 WAT</span></div>
+            <div class="gantt-bar france" style="left: 89.5%; width: 5.1%;"><span class="tooltip">21:29 – 22:42 WAT</span></div>
+          </div>
+        </div>
+
+        <div class="gantt-row">
+          <div class="gantt-label">Unknown <span>(n/a)</span></div>
+          <div class="gantt-track">
+            <div class="gantt-bar nigeria" style="left: 71.7%; width: 11.9%;"><span class="tooltip">17:13 – 20:05 WAT</span></div>
+          </div>
+        </div>
+
+        <div class="gantt-row">
+          <div class="gantt-label">Super Tucano #1 <span>(n/a)</span></div>
+          <div class="gantt-track">
+            <div class="gantt-bar nigeria" style="left: 72.6%; width: 5.4%;"><span class="tooltip">17:25 – 18:42 WAT</span></div>
+          </div>
+        </div>
+
+        <div class="gantt-row">
+          <div class="gantt-label">Super Tucano #2 <span>(n/a)</span></div>
+          <div class="gantt-track">
+            <div class="gantt-bar nigeria" style="left: 72.7%; width: 5.4%;"><span class="tooltip">17:26 – 18:43 WAT</span></div>
+          </div>
+        </div>
+
+        <div class="gantt-row">
+          <div class="gantt-label">CN-235 <span>(n/a)</span></div>
+          <div class="gantt-track">
+            <div class="gantt-bar ivorycoast" style="left: 73.1%; width: 2.0%;"><span class="tooltip">17:33 – 18:02 WAT</span></div>
+            <div class="gantt-bar ivorycoast" style="left: 78.7%; width: 0.3%;"><span class="tooltip">18:52 – 18:57 WAT</span></div>
+          </div>
+        </div>
+
+        <div class="gantt-row">
+          <div class="gantt-label">Beechcraft 350 <span>(n/a)</span></div>
+          <div class="gantt-track">
+            <div class="gantt-bar unknown" style="left: 87.4%; width: 12.6%;"><span class="tooltip">20:59 – 00:59+1 WAT</span></div>
+          </div>
+        </div>
+
+        <div class="gantt-divider"></div>
+
+        <!-- Events section -->
+        <div class="gantt-section-label">Key events</div>
+        <div class="gantt-row events-row-container">
+          <div class="gantt-label"></div>
+          <div class="gantt-track events-track">
+            <div class="event-marker top" style="left: 8.75%;">
+              <div class="event-tick"></div>
+              <div class="event-time">02:10</div>
+              <div class="event-text">First attack on<br>Bada residence</div>
+            </div>
+            <div class="event-marker bottom" style="left: 20.83%;">
+              <div class="event-tick"></div>
+              <div class="event-time">05:00</div>
+              <div class="event-text">Presidential Palace<br>attacked</div>
+            </div>
+            <div class="event-marker top" style="left: 33.33%;">
+              <div class="event-tick"></div>
+              <div class="event-time">08:00</div>
+              <div class="event-text">Coup declaration<br>broadcast</div>
+            </div>
+            <div class="event-marker bottom" style="left: 39.58%;">
+              <div class="event-tick"></div>
+              <div class="event-time">09:30</div>
+              <div class="event-text">Mutineers fall back<br>to Camp Togbin</div>
+            </div>
+            <div class="event-marker top" style="left: 72.92%;">
+              <div class="event-tick"></div>
+              <div class="event-time">17:30</div>
+              <div class="event-text">Airstrikes on<br>Camp Togbin</div>
+            </div>
+            <div class="event-marker bottom" style="left: 83.33%;">
+              <div class="event-tick"></div>
+              <div class="event-time">20:00</div>
+              <div class="event-text">President addresses<br>nation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gantt-footer">Sources: Flightradar24, AirNav • Times in WAT (UTC+1) • Flight times represent aircraft activity within Benin airspace</div>
+    </div>
+
+    <p>A French-registered ISR aircraft was tracked hovering over Cotonou for more than five hours, then undertook another flight after a brief stop around 21:00 WAT. The aircraft's capabilities and flight pattern are consistent with what French authorities described as "surveillance, observation, and logistical support."<a href="https://www.france24.com/fr/info-en-continu/20251209-au-b%C3%A9nin-la-france-dit-avoir-apport%C3%A9-appui-en-termes-de-surveillance-et-de-logistique-face-aux-putschistes" target="_blank" class="ref-link">[1]</a></p>
+
+    <p>Three Nigerian aircraft were observed entering Benin airspace: one from the northeast and two from the southeast. This timeline corresponds to reports of attack aircraft flying over Cotonou and conducting strikes. Two of the aircraft showed similar flight characteristics, and visual identification appeared to match the A-29B Super Tucano, a model fielded by the Nigerian Air Force with Close Air Support (CAS) capabilities consistent with reported events.<a href="https://www.flightglobal.com/defence/2026-world-air-forces-directory/165267.article" target="_blank" class="ref-link">[2]</a><a href="https://www.militaryfactory.com/modern-airpower/aircraft-nigerian-air-force.php" target="_blank" class="ref-link">[3]</a> No information was available on the third aircraft, though its flight pattern (hovering at higher altitude with consistent speed, overlapping with the attack aircraft) suggests an ISR platform providing information and tactical coordination.</p>
+
+    <div class="inline-image">
+      <img src="images/image-21.png" alt="Flight tracking over Cotonou showing Nigerian aircraft" onclick="openLightbox(this.src)">
+    </div>
+    <p class="image-caption">Flight tracking over Cotonou on December 7, 2025, at 16:18 UTC showing three Nigerian Air Force military aircraft (N/A) converging towards Cotonou during the attempted coup (source: Flightradar24)</p>
+
+    <p>During the same window, a Côte d'Ivoire military transport aircraft was tracked over Benin airspace before its transponder cut out as it reached Cotonou. The flight reappeared after a 50-minute gap, seemingly exiting Cotonou in a westbound direction. Flight tracking data showing the aircraft descending on approach and ascending on departure suggests it touched down in Cotonou during the gap.</p>
+
+    <p>While no official information has been shared on the nature of this mission, the flight pattern would be consistent with troop deployment. French special forces were reported to have supported Beninese army operations during the afternoon of the coup (Colonel Tévoédjrè, commander of the Beninese Republican Guard statement 10/12/2025<a href="https://www.rfi.fr/fr/podcasts/invit%C3%A9-afrique-midi/20251210-chef-de-la-garde-pr%C3%A9sidentielle-du-b%C3%A9nin-c-est-la-d%C3%A9termination-de-mes-hommes-qui-a-mis-en-d%C3%A9route-les-assaillants" target="_blank" class="ref-link">[4]</a>).</p>
+
+    <p>By 21:25, as most aircraft had exited, an unknown aircraft appeared over Parakou, marking the first aerial activity outside the greater Cotonou area. The aircraft is a similar model to the French ISR platform, a type known to be operated by both France and Benin for counterinsurgency missions in northern Benin.</p>
+
+
+    <!-- ==================== SECTION 3: FLIGHT TRACKING ANALYSIS ==================== -->
+    <div class="analysis-section">
+      <h2 class="section-title">Flight tracking information analysis</h2>
+      <p class="analysis-intro">Click headers to expand/collapse • Click images to enlarge</p>
+
+      <!-- Benin Block -->
+      <div class="analysis-block">
+        <div class="block-header expanded" onclick="toggleBlock(this)">
+          <span class="block-title">Benin</span>
+          <svg class="block-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+        <div class="block-content expanded">
+          <div class="block-inner">
+            <div class="image-row">
+              <div class="image-container" onclick="openLightbox('images/image-1.png')">
+                <img src="images/image-1.png" alt="Image 1">
+                <p class="block-image-caption">Flight tracking recap of the AutoGyro Calidus Sentinel 916 iS registered TY-64L over Cotonou on December 7, 2025 (source: AirNav Radar)</p>
+              </div>
+              <div class="image-container" onclick="openLightbox('images/image-2.png')">
+                <img src="images/image-2.png" alt="Image 2">
+                <p class="block-image-caption">Flight tracking recap of the AutoGyro Calidus Sentinel 916 iS registered TY-50L over Cotonou on December 7, 2025 (source: AirNav Radar)</p>
+              </div>
+            </div>
+
+            <div class="text-block">
+              <p>While the first Benin aircraft took off at 07:43 WAT, more than five hours after the mutineers launched their initial attack (02:00 WAT), this still demonstrates early response capacity from the Benin Air Force. Flight tracks from the first two gyrocopters (TY-64L and TY-50L) show activity above the districts that saw the first clashes.</p>
+            </div>
+
+            <div class="image-row single">
+              <div class="image-container" onclick="openLightbox('images/image-3.png')">
+                <img src="images/image-3.png" alt="Image 3">
+                <p class="block-image-caption">Flight tracking recap of the AS-350 B3e helicopter registered TY-37H over Cotonou on December 7, 2025 (source: AirNav Radar)</p>
+              </div>
+            </div>
+
+            <div class="text-block">
+              <p>The AS-350 B3e helicopter, also sometimes referred to as H125, departed later in the morning at 11:07 WAT. The aircraft is also ISR capable, with reports indicating that the models procured by Benin (including this TY-34H registration) are equipped with advanced electro-optical/infrared cameras.<a href="https://adf-magazine.com/2023/09/super-pumas-join-benins-air-force/" target="_blank" class="ref-link">[5]</a> The helicopter platform could technically provide transport to passengers (possibly emergency or medical evacuation) but the flight tracks show consistent flight pattern over Cotonou, with no reported landing during the flight, suggesting an ISR-oriented mission.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- France Block -->
+      <div class="analysis-block">
+        <div class="block-header france" onclick="toggleBlock(this)">
+          <span class="block-title">France</span>
+          <svg class="block-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+        <div class="block-content">
+          <div class="block-inner">
+            <div class="image-row">
+              <div class="image-container" onclick="openLightbox('images/image-4.png')">
+                <img src="images/image-4.png" alt="Image 4">
+                <p class="block-image-caption">Flight tracking recap of the first flight of the Beechcraft King Air 350 registered F-GYEE over Cotonou on December 7, 2025 (source: AirNav Radar)</p>
+              </div>
+              <div class="image-container" onclick="openLightbox('images/image-5.png')">
+                <img src="images/image-5.png" alt="Image 5">
+                <p class="block-image-caption">Flight tracking recap of the second flight of the Beechcraft King Air 350 registered F-GYEE over Cotonou on December 7, 2025 (source: AirNav Radar)</p>
+              </div>
+            </div>
+
+            <div class="text-block france">
+              <p>The Beechcraft King Air 350 registered F-GYEE logged the longest flight time of the day: 6 hours 32 minutes over two flights (13:28–18:47 and 20:29–21:42 WAT).</p>
+              <p style="margin-top: 12px;">This is a purpose-built ISR aircraft. It hovered over the western part of Cotonou where clashes were ongoing, including over Camp Togbin where mutineers had retreated. The aircraft was airborne prior to and during the Nigerian aircraft operations, as well as during the arrival and departure of the Côte d'Ivoire transport aircraft.</p>
+            </div>
+
+            <div class="image-row">
+              <div class="image-container" onclick="openLightbox('images/image-6.png')">
+                <img src="images/image-6.png" alt="Image 6">
+                <p class="block-image-caption">Flight logs of the Beechcraft King Air 350 registered F-GYEE covering 3 November 2025 to 23 December 2025 and showing the aircraft stationed in Cotonou prior to 7 December 2025 (source: Flightradar24)</p>
+              </div>
+              <div class="image-container" onclick="openLightbox('images/image-7.png')">
+                <img src="images/image-7.png" alt="Image 7">
+                <p class="block-image-caption">Screenshot from France's Aviation Civile aircraft register, showing aircraft registered F-GYEE ownership information</p>
+              </div>
+            </div>
+
+            <div class="text-block france">
+              <p>This aircraft was not deployed from abroad in response to the coup. Flight tracks show it departing and returning to Cotonou airport, and flight logs from 6 December 2025 confirm the aircraft was already present in Cotonou. It is regularly used to provide ISR support to Beninese armed forces counterinsurgency operations in the north of the country.<a href="https://www.france24.com/fr/afrique/20251211-king-air-350-avion-surveillance-francais-contre-putschistes-benin" target="_blank" class="ref-link">[6]</a></p>
+              <p style="margin-top: 12px;">The French aircraft registry shows the aircraft is owned by CAE Aviation, a Luxembourg-based company known for leasing aerial assets to the French military during Operation Barkhane and other counter-terrorism operations.<a href="https://egypt-papers.disclose.ngo/fr/chapter/cae-aviation" target="_blank" class="ref-link">[7]</a><a href="https://www.challenges.fr/entreprise/defense/cae-aviation-enquete-sur-le-tres-discret-partenaire-de-la-dgse_865761" target="_blank" class="ref-link">[8]</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nigeria Block -->
+      <div class="analysis-block">
+        <div class="block-header nigeria" onclick="toggleBlock(this)">
+          <span class="block-title">Nigeria</span>
+          <svg class="block-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+        <div class="block-content">
+          <div class="block-inner">
+            <div class="image-row">
+              <div class="image-container" onclick="openLightbox('images/image-8.png')">
+                <img src="images/image-8.png" alt="Image 8">
+                <p class="block-image-caption">Flight tracking recap of the suspected A-29B Super Tucano (1/2) over Benin and Nigeria on December 7, 2025 (source: Flightradar24)</p>
+              </div>
+              <div class="image-container" onclick="openLightbox('images/image-9.png')">
+                <img src="images/image-9.png" alt="Image 9">
+                <p class="block-image-caption">Flight tracking recap of the suspected A-29B Super Tucano (2/2) over Benin and Nigeria on December 7, 2025 (source: Flightradar24)</p>
+              </div>
+            </div>
+
+            <div class="text-block nigeria">
+              <p>The aerial operation led by Nigeria was relatively complex: three aircraft following different flight paths converged over Cotonou to conduct close air support operations in a densely populated area, with apparent success.</p>
+              <p style="margin-top: 12px;">No identity information was available on the flight tracking platform. However, two ground attack aircraft were reported over Cotonou during the timeframe of the Nigerian operation, and flight tracks show similar patterns in speed and altitude behavior between two of the aircraft tracked.</p>
+              <p style="margin-top: 12px;">These two aircraft did not originate from the same location in Nigeria. One was tracked near Abuja in the earlier part of its flight, while the other apparently departed from Lagos. Both returned to Lagos after the mission.</p>
+            </div>
+
+            <div class="image-row">
+              <div class="image-container" onclick="openLightbox('images/image-10.png')">
+                <img src="images/image-10.png" alt="Image 10">
+                <p class="block-image-caption">Message on X from @BrantPhilip_ posted on 8 December 2025 at 7:20 AM</p>
+              </div>
+              <div class="image-container" onclick="openLightbox('images/image-11.png')">
+                <img src="images/image-11.png" alt="Image 11">
+                <p class="block-image-caption">Cropped image on the aircraft depicted in the @BrantPhilip_ video posted on 8 December 2025 at 7:20 AM</p>
+              </div>
+              <div class="image-container" onclick="openLightbox('images/image-12.png')">
+                <img src="images/image-12.png" alt="Image 12">
+                <p class="block-image-caption">Blueprint from the Embraer EMB 314 YA-29 Super Tucano (Dr Dan Saranga, https://www.the-blueprints.com)</p>
+              </div>
+            </div>
+
+            <div class="text-block nigeria">
+              <p>As videos emerged on social media showing aircraft flying over Cotonou, the visible shape appeared to correspond to the blueprint of the A-29B Super Tucano (lean fuselage, forward propeller, straight frontend wings). This aircraft is part of the Nigerian Air Force inventory and regularly used for counterinsurgency operations.</p>
+            </div>
+
+            <div class="image-row">
+              <div class="image-container" onclick="openLightbox('images/image-13.png')">
+                <img src="images/image-13.png" alt="Image 13">
+                <p class="block-image-caption">Message on X from @casusbellii posted on 7 December 2025 at 6:23 PM</p>
+              </div>
+              <div class="image-container" onclick="openLightbox('images/image-14.png')">
+                <img src="images/image-14.png" alt="Image 14">
+                <p class="block-image-caption">Message on X from @zarGEOINT posted on 7 December 2025 at 7:12 PM</p>
+              </div>
+            </div>
+
+            <div class="text-block nigeria">
+              <p>As the Nigerian attack aircraft operated over Cotonou, a series of explosions were reported, with Nigerian officials later indicating they had targeted mutineer positions and armed vehicles. One explosion was geolocated to Camp Togbin, where a group of mutineers had retreated.</p>
+              <p style="margin-top: 12px;">Several elements support Nigerian aircraft involvement in this strike: the request from Beninese authorities for close air support, subsequent statements from Nigerian officials, the presence of attack aircraft over the location at the time of the explosions, and apparent munitions visible under the wings in video footage of the aircraft. Taken together, these indicate with reasonable confidence that Nigerian aircraft conducted the airstrike.<a href="https://www.france24.com/fr/afrique/20251208-b%C3%A9nin-les-images-de-l-intervention-du-nigeria-contre-les-putschistes" target="_blank" class="ref-link">[9]</a><a href="https://www.lemonde.fr/afrique/article/2025/12/07/apres-la-tentative-de-coup-d-etat-au-benin-le-nigeria-a-frappe-des-cibles-a-cotonou_6656406_3212.html" target="_blank" class="ref-link">[10]</a><a href="https://statehouse.gov.ng/president-tinubu-commends-nigerias-armed-forces-for-protecting-democracy-in-benin-republic/" target="_blank" class="ref-link">[11]</a></p>
+            </div>
+
+            <div class="image-row">
+              <div class="image-container" onclick="openLightbox('images/image-15.png')">
+                <img src="images/image-15.png" alt="Image 15">
+                <p class="block-image-caption">Flight tracking of an unknown Nigerian aircraft over Cotonou on December 7, 2025 (source: Flightradar24)</p>
+              </div>
+              <div class="image-container" onclick="openLightbox('images/image-16.png')">
+                <img src="images/image-16.png" alt="Image 16">
+                <p class="block-image-caption">Flight tracking of an unknown Nigerian aircraft over Benin and Nigeria on December 7, 2025 (source: Flightradar24)</p>
+              </div>
+            </div>
+
+            <div class="text-block nigeria">
+              <p>A third aircraft was part of the Nigerian operation, with no identity information available on flight tracking platforms. This aircraft displayed different flight behavior: lower speed and higher altitude than the attack aircraft. It also remained over Cotonou longer, exiting Benin airspace around 19:05 WAT, more than an hour after the attack aircraft departed at 17:43 WAT. The aircraft switched off its transponder over Nigeria, so its departure airport could not be established, though its trajectory to and from northern Nigeria was similar to that of the attack aircraft originating from Abuja.</p>
+              <p style="margin-top: 12px;">Based on these elements, this unidentified aircraft appears to be an ISR platform, likely providing reconnaissance and coordination support to the two attack aircraft.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Côte d'Ivoire Block -->
+      <div class="analysis-block">
+        <div class="block-header ivorycoast" onclick="toggleBlock(this)">
+          <span class="block-title">Côte d'Ivoire</span>
+          <svg class="block-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+        <div class="block-content">
+          <div class="block-inner">
+            <div class="image-row">
+              <div class="image-container" onclick="openLightbox('images/image-17.png')">
+                <img src="images/image-17.png" alt="Image 17">
+                <p class="block-image-caption">Flight tracking of a CASA CN-235-300M aircraft on the first leg of its flight from Côte d'Ivoire to Benin on December 7, 2025 (source: Flightradar24)</p>
+              </div>
+              <div class="image-container" onclick="openLightbox('images/image-18.png')">
+                <img src="images/image-18.png" alt="Image 18">
+                <p class="block-image-caption">Flight tracking of a CASA CN-235-300M aircraft on the return leg of its flight from Côte d'Ivoire to Benin on December 7, 2025 (source: Flightradar24)</p>
+              </div>
+            </div>
+
+            <div class="text-block ivorycoast">
+              <p>The CASA CN-235-300M, a Côte d'Ivoire-registered military transport aircraft, conducted perhaps the most enigmatic mission of all reported flights. The aircraft appeared to start and finish its mission near Abidjan.</p>
+              <p style="margin-top: 12px;">While it broadcast its position when approaching Cotonou (likely as a safety and coordination measure given the four other military aircraft active over the capital), the aircraft switched off its transponder for a 50-minute window from 17:02 to 17:52 WAT. Flight tracking data show the aircraft over Cotonou and descending at the start of this gap, then ascending and departing westbound at the end, suggesting it may have touched down at Cotonou airport.</p>
+              <p style="margin-top: 12px;">Given this is a tactical transport aircraft, such a rapid maneuver seems plausible. If so, the aircraft could have been used to deliver personnel or cargo, with cargo being less probable given the limited time available to unload.</p>
+              <p style="margin-top: 12px;">Confirmed reports indicate that Côte d'Ivoire troops from the ECOWAS Standby Force were dispatched, though these deployments appear to have occurred later in the day or at night.<a href="https://x.com/ecowas_cedeao/status/1997752286869848535?s=20" target="_blank" class="ref-link">[12]</a><a href="https://www.bbc.com/news/articles/cx2pp7y2jdyo" target="_blank" class="ref-link">[13]</a> Separately, in an interview on 10 December 2025, Col. Dieudonné Djimon Tévoédjrè mentioned that French special forces had been dispatched to Cotonou to participate in sweeping operations alongside Beninese security forces.</p>
+              <p style="margin-top: 12px;">While this is difficult to confirm through open-source data, the CASA CN-235-300M's flight characteristics, capacity, and timeline are consistent with this claim.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unknown Block -->
+      <div class="analysis-block">
+        <div class="block-header unknown" onclick="toggleBlock(this)">
+          <span class="block-title">Unknown</span>
+          <svg class="block-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+        <div class="block-content">
+          <div class="block-inner">
+            <div class="image-row single">
+              <div class="image-container" onclick="openLightbox('images/image-19.png')">
+                <img src="images/image-19.png" alt="Image 19">
+                <p class="block-image-caption">Flight tracking recap of Beechcraft King Air 350 over Benin on December 7, 2025 (source: Flightradar24)</p>
+              </div>
+            </div>
+
+            <div class="text-block unknown">
+              <p>At 20:00 WAT, after all foreign aircraft had left Benin airspace, a second Beechcraft King Air 350 took off from Cotonou airport and headed north, hovering over the city of Parakou. This marked the first targeted aerial activity outside Cotonou after the day's intense focus on the capital.</p>
+              <p style="margin-top: 12px;">While the identity of the aircraft could not be confirmed from flight tracking data, this is a dedicated ISR platform, likely providing support to ground operations as security forces searched for fleeing mutineers, including the head of the operation, Lt. Col. Pascal Tigri.</p>
+              <p style="margin-top: 12px;">This aircraft is not the F-GYEE, which can be tracked over Cotonou from 20:29 WAT. Both France and Benin are known to operate this aircraft type from Cotonou in support of counterinsurgency operations in the north of the country, making either a likely operator.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ==================== SECTION 4: METHODOLOGY ==================== -->
+    <h2 class="section-title">How was the data collected?</h2>
+
+    <div class="methodology-section">
+      <p class="methodology-intro">This report relies on open-source intelligence (OSINT) methods combining flight tracking data, military equipment databases, press reporting, and social media monitoring.</p>
+
+      <div class="methodology-block">
+        <h3 class="methodology-heading">Flight tracking data</h3>
+        <p>Aircraft transmit Automatic Dependent Surveillance-Broadcast (ADS-B) signals for air traffic management and safety. These signals are captured by ground-based receivers and aggregated by platforms such as Flightradar24 and AirNav RadarBox. While real-time tracking is publicly accessible, the historical flight data and airport logs used in this analysis were accessed through paid subscriptions to these platforms.</p>
+        <p>Flight tracking platforms provide several types of information used in this analysis:</p>
+        <ul class="methodology-list">
+          <li><strong>Registration and identity:</strong> Aircraft registration numbers (e.g., F-GYEE, TY-64L) allow identification of the aircraft type, owner, and operator through cross-referencing with aviation registries.</li>
+          <li><strong>Airport and flight logs:</strong> Historical flight records reveal an aircraft's basing location, operational patterns, and presence in specific areas over time.</li>
+          <li><strong>Flight profile:</strong> Real-time and historical tracks show altitude, speed, heading, and geographic position, enabling assessment of departure/arrival areas and inference of mission type (e.g., sustained orbits suggest ISR; direct transits suggest transport).</li>
+        </ul>
+        <p>Military and government aircraft may deactivate ADS-B transponders during sensitive operations or request suppression of their data from public platforms. Consequently, the flight information presented may be partial, reflecting only segments of certain flights, and does not capture aircraft operating without active transponders.</p>
+      </div>
+
+      <div class="methodology-block">
+        <h3 class="methodology-heading">Aircraft identification and attribution</h3>
+        <p>Aircraft type and operator attribution were verified using military equipment databases including FlightGlobal World Air Forces, Military Factory, and official armed forces inventories. Visual identification from social media imagery was cross-referenced against known aircraft silhouettes and national air force inventories.</p>
+      </div>
+
+      <div class="methodology-block">
+        <h3 class="methodology-heading">Timeline and contextual information</h3>
+        <p>The timeline of ground events was reconstructed using press reporting from international and regional outlets, official government statements, and social media posts from verified accounts. Key claims were cross-referenced across multiple sources where possible.</p>
+      </div>
+    </div>
+
+
+    <!-- Footer -->
+    <div class="report-footer">
+      <p>Published: January 2026</p>
+    </div>
+
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-content">
+      <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+      <img id="lightbox-image" src="" alt="Enlarged image">
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <script>
+    // Toggle collapsible block
+    function toggleBlock(header) {
+      header.classList.toggle('expanded');
+      const content = header.nextElementSibling;
+      content.classList.toggle('expanded');
+    }
+
+    // Open lightbox
+    function openLightbox(imageSrc) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImage = document.getElementById('lightbox-image');
+      lightboxImage.src = imageSrc;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close lightbox
+    function closeLightbox(event) {
+      if (event.target.classList.contains('lightbox') || event.target.classList.contains('lightbox-close')) {
+        document.getElementById('lightbox').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Close lightbox on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.getElementById('lightbox').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Back to top button
+    const backToTopButton = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 400) {
+        backToTopButton.classList.add('visible');
+      } else {
+        backToTopButton.classList.remove('visible');
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
